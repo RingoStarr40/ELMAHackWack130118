@@ -15,8 +15,9 @@ class Block {
         this.previousHash = previousHash.toString();
         this.timestamp = timestamp;
         console.log(data);
-        var blockData = JSON.parse(data);
-        this.data = JSON.stringify(new BlockData(blockData.fromId, blockData.toId, blockData.amount));
+        console.log(data.fromId); 
+        console.log(data.toId); 
+        this.data = JSON.stringify(data);
         this.hash = hash.toString();
     }
 }
@@ -38,7 +39,7 @@ var MessageType = {
 
 var firstBlockData = {"fromId": 0, "toId": 0, "amount" :0};
 var getGenesisBlock = () => {
-    return new Block(0, "0", 1465154705, JSON.stringify(firstBlockData), "816534932c2b7154836da6afc367695e6337db8a921823784c14378abed4f7d7");
+    return new Block(0, "0", 1465154705, firstBlockData, "816534932c2b7154836da6afc367695e6337db8a921823784c14378abed4f7d7");
 };
 
 var blockchain = [getGenesisBlock()];
@@ -118,7 +119,7 @@ var generateNextBlock = (blockData) => {
     var previousBlock = getLatestBlock();
     var nextIndex = previousBlock.index + 1;
     var nextTimestamp = new Date().getTime() / 1000;
-    var nextHash = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, blockData);
+    var nextHash = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, JSON.stringify(blockData));
     return new Block(nextIndex, previousBlock.hash, nextTimestamp, blockData, nextHash);
 };
 
@@ -128,7 +129,7 @@ var calculateHashForBlock = (block) => {
 };
 
 var calculateHash = (index, previousHash, timestamp, data) => {
-    return CryptoJS.SHA256(index + previousHash + timestamp + data).toString();
+    return CryptoJS.SHA256(index + previousHash + timestamp + JSON.stringify(data)).toString();
 };
 
 var addBlock = (newBlock) => {

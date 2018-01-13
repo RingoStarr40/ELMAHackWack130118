@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,6 +131,7 @@
     <Compile Include="Components\BlockchainTransferToolbarButton.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Menu\BlockchainMenuItems.cs" />
+    <Compile Include="Models\TransactionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteProvider.cs" />
   </ItemGroup>
@@ -139,8 +141,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Integration\Buttons\" />
-    <Folder Include="Models\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Views\BlockchainList\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +161,7 @@
   <ItemGroup>
     <None Include="Properties\EleWise.ELMA.Blockchain.Web.nuspec" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\BlockchainList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

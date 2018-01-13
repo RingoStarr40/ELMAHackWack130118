@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Введите данные</h1>
+    <form action="" method="post" name="registerForm">
+        <input type="text" name="fromId" /></br></br>
+	<input type="text" name="toId" /></br></br>
+	<input type="text" name="amount" /></br></br>
+        <input type="submit" value="Отправить"/></br>
+    </form>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        $("form").submit(function(e) {
+            e.preventDefault();
+            var registerForm = document.forms["registerForm"];
+            var fromId = registerForm.elements["fromId"].value;
+	    var toId = registerForm.elements["toId"].value;
+	    var amount = registerForm.elements["amount"].value;
+             
+            $.ajax({
+                type: "POST",
+                url: "http://blockchain.elewise.local:3001/mineBlock",
+                data: JSON.stringify({data:{fromId: fromId, toId: toId, amount: amount}}),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data){ 
+                    //console.log(fromId);
+                    },
+                });
+        });
+    </script>
+</body>
+</html>

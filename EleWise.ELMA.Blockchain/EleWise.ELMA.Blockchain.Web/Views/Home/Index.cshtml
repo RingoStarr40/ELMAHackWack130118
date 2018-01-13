@@ -1,6 +1,18 @@
-﻿@{
-    ViewBag.Title = "EleWise.ELMA.Blockchain.Web";
+﻿@model GridData<IBlochckainModel>
+
+@{
+    Html.Header(SR.T("Список транзакций"));
 }
 
-<h1>МИША ПРИВЕТ КАК ДЕЛА</h1>
-<h2>Welcome to ELMA 3 modules development</h2>
+@Html.Toolbar().Back(true)
+
+@{
+    var gridId = (string)ViewData["GridId"];
+}
+
+@(Html.DynamicGrid(gridId, Model)
+    .Columns(c =>
+                {
+                    c.For(m => )
+                }
+    )

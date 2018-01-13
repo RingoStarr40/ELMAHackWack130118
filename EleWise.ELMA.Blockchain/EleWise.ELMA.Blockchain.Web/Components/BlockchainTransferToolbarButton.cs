@@ -1,6 +1,8 @@
 ﻿using EleWise.ELMA.ComponentModel;
+using EleWise.ELMA.Extensions;
 using EleWise.ELMA.Security;
 using EleWise.ELMA.Web.Mvc.ExtensionPoints.ActionItems;
+using EleWise.ELMA.Web.Mvc.Html;
 using EleWise.ELMA.Web.Mvc.Html.Toolbar;
 using EleWise.ELMA.Web.Mvc.Models.ActionItems.Toolbar;
 using System;
@@ -14,7 +16,7 @@ namespace EleWise.ELMA.Blockchain.Web.Components
     [Component]
     public class BlockchainTransferToolbarButton : IActionItemProvider
     {
-        public void InsertItems(IActionItem rootItem, System.Web.Mvc.HtmlHelper htmlHelper)
+        public void InsertItems(IActionItem rootItem, HtmlHelper htmlHelper)
         {
             if (rootItem == null) return;
             if (rootItem.Uid != ToolbarBuilder.DefaultActionsToolbarUid) return;
@@ -23,7 +25,7 @@ namespace EleWise.ELMA.Blockchain.Web.Components
 
             if (group != null)
             {
-               //GetItems(rootItem, htmlHelper).ForEach(item => group.Items.Add(item));
+               GetItems(rootItem, htmlHelper).ForEach(item => group.Items.Add(item));
             }
         }
 
@@ -41,7 +43,7 @@ namespace EleWise.ELMA.Blockchain.Web.Components
 
             yield return new ActionToolbarItem
             {
-                Url = String.Empty, //htmlHelper.Url().Action("Index", "Home", new { area = RouteProvider.AreaName }),
+                Url = htmlHelper.Url().Action("Index", "Home", new { area = RouteProvider.AreaName }),
                 Text = SR.T("Перевод")
             };
         }        

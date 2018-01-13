@@ -55,6 +55,11 @@
     <None Include="AssemblyInfo.md">
       <Generator>MDCodeGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\BlochckainModel.md">
+      <Generator>MDCodeGenerator</Generator>
+      <LastGenOutput>BlochckainModel.cs</LastGenOutput>
     </None>
     <None Include="Properties\EleWise.ELMA.Blockchain.nuspec" />
   </ItemGroup>
@@ -64,13 +69,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.md</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlochckainModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlochckainModel.md</DependentUpon>
+    </Compile>
     <Compile Include="ProjectAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Managers\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
