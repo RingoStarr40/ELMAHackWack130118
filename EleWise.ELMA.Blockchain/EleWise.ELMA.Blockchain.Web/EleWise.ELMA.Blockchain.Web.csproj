@@ -143,7 +143,6 @@
     <Folder Include="Integration\Buttons\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\BlockchainList\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EleWise.ELMA.Blockchain\EleWise.ELMA.Blockchain.csproj">
@@ -162,6 +161,7 @@
     <None Include="Properties\EleWise.ELMA.Blockchain.Web.nuspec" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\BlockchainList.cshtml" />
+    <Content Include="Views\Shared\GridView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

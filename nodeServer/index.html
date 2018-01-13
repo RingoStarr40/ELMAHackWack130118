@@ -8,8 +8,15 @@
     <form action="http://blockchain.elewise.local:3002/mineBlock" method="get" name="myForm">
         <input type="submit" value="Отправить"/>
     </form>
+   
+    <h3>Цепочка</h3>
     <div id = "blockChain">
-    </div> 
+    </div>
+    
+    <h3>Мой кошелек</h3>
+    <div id = "pouch">
+    </div>   
+
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script>
         $("form").submit(function(e) {
@@ -18,23 +25,53 @@
                 type: "GET",
                 url: "http://blockchain.elewise.local:3001/blocks",
                 success: function(data){ 
+                    $('#blockChain').empty();                    
                     var chain = JSON.parse(data)
                     var userId = 0; 
-                    JSON.parse(data, function(k, v) {
+                    var table = $('<table></table>');
+                    var pouch = 0;
+                    var pouchIn = 0;
+                    var pouchOut = 0;
+                    JSON.parse(data, function(k, v,) {
                          if (k == "data"){
-                           debugger;
                            var blockData = JSON.parse(v);
+
+                           if (blockData.fromId == userId){
+                             pouchOut += blockData.amount;
+                             alert(pouchOut);  
+                             alert(blockData.amount);  
+                           }
+                           if (blockData.toId == userId){
+                             pouchIn += blockData.amount;
+                             alert(pouchIn);
+                             alert(blockData.amount);    
+                           }
+                           debugger;
+                           
                            console.log(v);
                            console.log(blockData);
                            console.log(blockData.fromId);
                            console.log(blockData.toId);
                            console.log(blockData.amount);
+                           
+                           var row = $('<tr></tr>');
+                           var cell = $('<td></td>').text('fromId ' + blockData.fromId);
+                           row.append(cell);   
+                           var cell = $('<td></td>').text('toId ' + blockData.toId);
+                           row.append(cell);   
+                           var cell = $('<td></td>').text('amount ' + blockData.amount);
+                           row.append(cell);   
+                           
+                           table.append(row);
                          }
                          if (k == "hash"){
                            console.log(v)
                          }
                      
-                    }); 
+                    });
+                    $('#blockChain').append(table);  
+                    pouch = pouchIn - pouchOut; 
+                    $('#pouch').text(pouch);
                     //console.log(data);
                     //console.log(chain) 
                     },
